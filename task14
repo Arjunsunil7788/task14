@@ -1,0 +1,50 @@
+Task 14: Cloud Web Server and Database Setup
+
+This document outlines the steps taken to complete the assignment, including screenshots and key information.
+
+Objective:
+To create a free-tier virtual machine on a public cloud provider, configure it with a web server and database, and host a user registration page.
+
+Cloud Provider: Google Cloud Platform (GCP)
+VM Public IP Address: 34.59.25.133
+Step 1: Starting a Free VM and Accessing via SSH
+
+    VM Creation: A new VM instance named my-new-web-vm was created on Google Cloud Platform using the gcloud command-line tool to ensure correct SSH key setup and free-tier eligibility. The f1-micro machine type and Debian 12 OS were selected. Firewall rules for HTTP and HTTPS were enabled.
+
+    SSH Key Authentication: An existing SSH key (gcp_key) was used for authentication. The public key was correctly added to the VM's metadata, authorizing the kali user for SSH access.
+
+    SSH Login: The VM was successfully accessed from a Kali Linux terminal using the following command. The authenticity of the host was verified, and a persistent connection was established.
+
+
+Step 2: Setting up the Web Server
+
+    Git Clone: The GitHub repository for Task 12 was cloned to the VM.
+
+    git clone [https://github.com/Arjunsunil7788/task-12](https://github.com/Arjunsunil7788/task-12)
+
+    File Copy: The files from the cloned repository were copied to the Apache web server's root directory (/var/www/html/).
+
+    sudo cp -r task-12/* /var/www/html/
+
+    Apache Web Server Status: The Apache service encountered a port conflict issue that prevented it from starting. This issue was not resolved. However, the files are in place and would be served correctly once the web server is active.
+
+
+Step 3: Installing a Database and Creating a User Registration System
+
+    Database Installation: MariaDB was installed as a replacement for MySQL, as the mysql-server package was not available in the Debian 12 repositories.
+
+    sudo apt-get install mariadb-server -y
+
+    Database and User Creation: A database named users_db and a table named users were created. A user webuser with the password kali was granted privileges on the new database.
+
+
+
+    PHP Registration File: A register.php file was created and placed in the web root. This file contains an HTML form and PHP code to handle user registration, password hashing, and insertion into the database.
+
+r
+
+Remaining Work:
+
+The only remaining technical step is to resolve the Apache web server startup issue. The steps to resolve this were attempted but ultimately failed due to a recurring port conflict. All other required components of the assignment are complete and functional.
+
+Public IP of Webserver: 34.59.25.133
